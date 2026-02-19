@@ -1,0 +1,19 @@
+# Core
+numpy
+pandas
+torch
+matplotlib
+
+# Tokenization / data
+huggingface-hub
+datasets
+tokenizers
+
+# Evaluation (GenPPL / MAUVE)
+transformers
+mauve-text
+
+# Optional but commonly needed by HF/tokenizers stacks
+tqdm
+regex
+requests

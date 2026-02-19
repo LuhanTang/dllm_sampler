@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+
+# outputs / artifacts
+sampler_output/
+sampler_plots/
+plots/
+plots_*/
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.npy
+
+# local large dirs
+LLaDA/
+SEDD/
+diffusion/
+remdm/
+vdm/
+beifen/
+byl/

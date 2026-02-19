@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-01-27T04:31:38.273887Z",
+  "max_chars_per_doc": 4096,
+  "max_docs": 0,
+  "max_text_bytes": 200000000,
+  "normalize_ws": true,
+  "out_dir": "/home/ltang072/dllm_sampler/tokenizers/owt_bytebpe_v4096",
+  "owt_name": "stanford-cs336/owt-sample",
+  "requested_vocab_size": 4096,
+  "seed": 123,
+  "special_tokens": [
+    "<pad>",
+    "<unk>",
+    "<bos>",
+    "<eos>"
+  ],
+  "split": "train",
+  "strip": true,
+  "tokenizer_path": "/home/ltang072/dllm_sampler/tokenizers/owt_bytebpe_v4096/tokenizer.json",
+  "vocab_size": 4096
+}
