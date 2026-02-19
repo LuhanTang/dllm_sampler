@@ -113,12 +113,17 @@ bash exp/run_all.sh large 0 512
 bash exp/run_all.sh all 0 512
 ```
 
-## LLaDA vs MDLM in This Repo
+## Sampler Mapping in This Repo
 
 In `exp/run_mdlm_llada.sh` + `sampler.llada.run_llada`:
 
 - `--remasking low_confidence` => LLaDA
 - `--remasking random` => MDLM
+
+Other sampler entry points:
+
+- SEDD: `exp/run_sedd.sh` -> `sampler.sedd.run_sedd`
+- ReMDM: `exp/run_remdm.sh` -> `sampler.remdm.run_remdm`
 
 ## Metrics (Highlight)
 
@@ -140,6 +145,13 @@ Recommendation: prioritize transition/distribution metrics (`full_kl_rate`, `ful
 - `sampler/eval_owt_mauve_genppl.py`
 - `sampler/ar/run_ar_temp_genppl_gpt2.py`
 - `exp/run_genppl_mauve.sh`
+
+## Related Papers
+
+- SEDD: [https://arxiv.org/abs/2310.16834](https://arxiv.org/abs/2310.16834)
+- MDLM: [https://arxiv.org/abs/2406.07524](https://arxiv.org/abs/2406.07524)
+- LLaDA: [https://arxiv.org/abs/2502.09992](https://arxiv.org/abs/2502.09992)
+- ReMDM: [https://arxiv.org/abs/2503.00307](https://arxiv.org/abs/2503.00307)
 
 ## Outputs
 
