@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Sampler-Centric Evaluation of Discrete Diffusion Language Models</title>
+    <meta
+      name="description"
+      content="Project page for A Sampler-Centric Evaluation of Discrete Diffusion Language Models."
+    />
+    <style>
+      :root {
+        --bg: #f6f8fb;
+        --card: #ffffff;
+        --text: #101828;
+        --muted: #475467;
+        --line: #d0d5dd;
+        --accent: #0f6fff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 80% -10%, #d6e6ff 0%, transparent 45%),
+          radial-gradient(circle at -20% 30%, #e6f7ed 0%, transparent 40%),
+          var(--bg);
+        line-height: 1.6;
+      }
+      .container {
+        width: min(960px, 92vw);
+        margin: 36px auto 64px;
+      }
+      .hero {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 28px 24px;
+        box-shadow: 0 10px 32px rgba(16, 24, 40, 0.06);
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        line-height: 1.2;
+      }
+      .subtitle {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+      .links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: #fff;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-weight: 600;
+      }
+      .btn.primary {
+        border-color: #0b5ad2;
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+      .section {
+        margin-top: 20px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px 24px;
+      }
+      h2 {
+        margin: 0 0 10px;
+        font-size: 1.25rem;
+      }
+      ul {
+        margin: 8px 0 0 20px;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: #fff;
+      }
+      code {
+        background: #eef2ff;
+        border-radius: 6px;
+        padding: 2px 6px;
+      }
+      .footer {
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>A Sampler-Centric Evaluation of Discrete Diffusion Language Models</h1>
+        <p class="subtitle">
+          Project page and code release.
+        </p>
+        <div class="links">
+          <a class="btn primary" href="https://github.com/LuhanTang/dllm_sampler" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
+              <path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.34c-2.01.44-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.82-2.13-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.81A7.53 7.53 0 0 1 8 3.8c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.81 2.2-.81.44 1.1.16 1.92.08 2.12.51.55.82 1.25.82 2.13 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"></path>
+            </svg>
+            Code
+          </a>
+          <a class="btn" href="https://arxiv.org/abs/2502.09992" target="_blank" rel="noopener noreferrer">LLaDA</a>
+          <a class="btn" href="https://arxiv.org/abs/2406.07524" target="_blank" rel="noopener noreferrer">MDLM</a>
+          <a class="btn" href="https://arxiv.org/abs/2310.16834" target="_blank" rel="noopener noreferrer">SEDD</a>
+          <a class="btn" href="https://arxiv.org/abs/2503.00307" target="_blank" rel="noopener noreferrer">ReMDM</a>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2>Abstract</h2>
+        <p>
+          Discrete diffusion language models (dLLMs) offer fast parallel decoding but are harder to evaluate than autoregressive models,
+          because learned-denoiser approximation error and sampler-induced error are often conflated. We introduce a sampler-centric oracle
+          evaluation framework that replaces learned denoisers with an exact HMM posterior derived from a ground-truth Markov chain, enabling
+          controlled isolation of sampler error under method-consistent settings.
+        </p>
+        <p>
+          Under this oracle setup, we show that few-step dLLM samplers are not distributionally correct: transition-level mismatch is large
+          at small step counts and shrinks only as diffusion steps approach sequence length. We further show that improvements in
+          <code>NLL</code>, <code>GenPPL</code>, or <code>MAUVE</code> do not necessarily imply correct sampling.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Core Contributions</h2>
+        <ul>
+          <li>Sampler-centric oracle evaluation that isolates sampler-induced error from denoiser approximation.</li>
+          <li>Method-consistent comparison across LLaDA/MDLM, SEDD, and ReMDM.</li>
+          <li>Transition-level diagnosis via unified metrics, beyond single scalar quality scores.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Repository Highlights</h2>
+        <div class="grid">
+          <div class="chip"><strong>Experiment entry</strong><br /><code>exp/run_all.sh</code></div>
+          <div class="chip"><strong>LLaDA/MDLM</strong><br /><code>exp/run_mdlm_llada.sh</code></div>
+          <div class="chip"><strong>SEDD</strong><br /><code>exp/run_sedd.sh</code></div>
+          <div class="chip"><strong>ReMDM</strong><br /><code>exp/run_remdm.sh</code></div>
+          <div class="chip"><strong>Metrics</strong><br /><code>sampler/metrics_full.py</code></div>
+          <div class="chip"><strong>OWT tokenizer + GT</strong><br /><code>exp/build_tokenizer.sh</code></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Quick Start</h2>
+        <p>From the repository root:</p>
+        <ul>
+          <li><code>bash exp/build_gt.sh</code> (text8 GT)</li>
+          <li><code>bash exp/build_tokenizer.sh all</code> (OWT tokenizer + GT)</li>
+          <li><code>bash exp/run_all.sh all 0 512</code> (run all samplers)</li>
+        </ul>
+      </section>
+
+      <p class="footer">
+        For full details, see the repository README and tutorial.
+      </p>
+    </main>
+  </body>
+</html>
