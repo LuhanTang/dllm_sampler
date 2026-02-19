@@ -138,8 +138,6 @@ Recommendation: prioritize transition/distribution metrics (`full_kl_rate`, `ful
 ## MAUVE / GenPPL Related Files
 
 - `sampler/eval_owt_mauve_genppl.py`
-- `sampler/sedd/run_sedd_genppl.py`
-- `sampler/sedd/run_sedd_mauve.py`
 - `sampler/ar/run_ar_temp_genppl_gpt2.py`
 - `exp/run_genppl_mauve.sh`
 
