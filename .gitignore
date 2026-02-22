@@ -16,11 +16,25 @@ plots_*/
 *.npy
 
 # local large dirs
-LLaDA/
-SEDD/
-diffusion/
-remdm/
-vdm/
-beifen/
-byl/
-personal-site/
+/LLaDA/
+/SEDD/
+/diffusion/
+/remdm/
+/vdm/
+/beifen/
+/byl/
+/personal-site/
+
+# keep code/data under sampler tracked
+!sampler/llada/
+!sampler/llada/**
+!sampler/sedd/
+!sampler/sedd/**
+!sampler/remdm/
+!sampler/remdm/**
+sampler/**/__pycache__/
+sampler/**/*.pyc
+
+# keep required gt assets tracked
+!sampler_gt/
+!sampler_gt/*.pt

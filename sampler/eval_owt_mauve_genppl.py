@@ -12,20 +12,20 @@ from tokenizers import Tokenizer
 GT_PT = "sampler_gt/gt_samples_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123.pt"
 GT_KEY = "gt_samples_ids"
 
-AR_PT = "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_accurate_beta1_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110115/sequences/ar_ids.pt"
+AR_PT = "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_accurate_beta1_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110115/sequences/ar_ids.pt"
 
 # =============================
 # SEDD runs
 # =============================
-SEDD_ACC_DIR = "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_accurate_beta1_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110115/sequences"
+SEDD_ACC_DIR = "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_accurate_beta1_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110115/sequences"
 SEDD_ACC_PREFIX = "sedd_accurate"
 
 INACC = [
-    (3,  "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta3_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110331/sequences"),
-    (5,  "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta5_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110501/sequences"),
-    (10, "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta10_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110630/sequences"),
-    (20, "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta20_tr0_topm0_qnone_K206_eps0p0001_seed123_20260209_111510/sequences"),
-    (30, "sampler_output/sedd/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta30_tr0_topm0_qnone_K206_eps0p0001_seed123_20260210_091302/sequences"),
+    (3,  "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta3_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110331/sequences"),
+    (5,  "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta5_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110501/sequences"),
+    (10, "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta10_tr0_topm0_qnone_K206_eps0p0001_seed123_20260208_110630/sequences"),
+    (20, "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta20_tr0_topm0_qnone_K206_eps0p0001_seed123_20260209_111510/sequences"),
+    (30, "results/sedd/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_sedd_inaccurate_beta30_tr0_topm0_qnone_K206_eps0p0001_seed123_20260210_091302/sequences"),
 ]
 SEDD_INACC_PREFIX = "sedd_inaccurate"
 
@@ -34,10 +34,10 @@ SEDD_INACC_PREFIX = "sedd_inaccurate"
 # NOTE: each run_dir contains samples_step{step}.pt
 # =============================
 REMDM_RUNS = [
-    ("ReMDM", "conf_p1",   "sampler_output/remdm/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_conf_p1_eta0p9_ton1_toff0_aon0_nr1_Ne512_K206_eps0p0001_seed123_20260209_104146"),
-    ("ReMDM", "conf_p0p9", "sampler_output/remdm/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_conf_p0p9_eta0p9_ton1_toff0_aon0_nr1_Ne512_K206_eps0p0001_seed123_20260210_093458"),
-    ("ReMDM", "loop_p1",   "sampler_output/remdm/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_loop_p1_eta0p02_ton0p55_toff0p05_aon0p9_nr1_Ne512_K206_eps0p0001_seed123_20260209_105003"),
-    ("ReMDM", "loop_p0p9", "sampler_output/remdm/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_loop_p0p9_eta0p02_ton0p55_toff0p05_aon0p9_nr1_Ne512_K206_eps0p0001_seed123_20260209_152133"),
+    ("ReMDM", "conf_p1",   "results/remdm/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_conf_p1_eta0p9_ton1_toff0_aon0_nr1_Ne512_K206_eps0p0001_seed123_20260209_104146"),
+    ("ReMDM", "conf_p0p9", "results/remdm/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_conf_p0p9_eta0p9_ton1_toff0_aon0_nr1_Ne512_K206_eps0p0001_seed123_20260210_093458"),
+    ("ReMDM", "loop_p1",   "results/remdm/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_loop_p1_eta0p02_ton0p55_toff0p05_aon0p9_nr1_Ne512_K206_eps0p0001_seed123_20260209_105003"),
+    ("ReMDM", "loop_p0p9", "results/remdm/owt/json/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123_remdm_loop_p0p9_eta0p02_ton0p55_toff0p05_aon0p9_nr1_Ne512_K206_eps0p0001_seed123_20260209_152133"),
 ]
 
 # =============================
