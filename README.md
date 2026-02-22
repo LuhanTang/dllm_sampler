@@ -64,6 +64,18 @@ pip install -U pip
 pip install -r requirements.txt
 ```
 
+## Git LFS Setup (Required for `sampler_gt/*.pt`)
+
+This repo tracks `sampler_gt` `.pt` files with Git LFS.
+
+```bash
+# one-time setup on your machine
+git lfs install
+
+# after clone / pull, make sure large files are downloaded
+git lfs pull
+```
+
 ## Recommended Workflow
 
 ### 1. Prepare GT data
