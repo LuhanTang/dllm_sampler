@@ -42,7 +42,7 @@ export CUDA_VISIBLE_DEVICES=$GPU
 # UPDATED GT PATHS (yours)
 # -----------------------
 GT_TEXT8_T128="gt_text8_char_T128_N1000_topk27_lam1e-4.pt"
-GT_TEXT8_T1024="gt_text8_char_withSpace_T1024_N128_topk27_eps0.pt"
+GT_TEXT8_T1024="sampler_gt/gt_text8_char_withSpace_T1024_N128_topk27_eps0.pt"
 GT_OWT="sampler_gt/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123.pt"
 
 # Defaults

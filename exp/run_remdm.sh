@@ -43,7 +43,7 @@ N_CHUNK="${N_CHUNK:-128}"
 # ----------------------------
 # GT paths
 # ----------------------------
-GT_TEXT8_LARGE="/home/ltang072/dllm_sampler/gt_text8_char_withSpace_T1024_N128_topk27_eps0.pt"
+GT_TEXT8_LARGE="sampler_gt/gt_text8_char_withSpace_T1024_N128_topk27_eps0.pt"
 GT_OWT_LARGE="sampler_gt/gt_owt_bytebpe_T1024_N1000_autoK_p90_mass0.99_eps1e-4_seed123.pt"
 GT_TEXT8_SMALL="gt_text8_char_T128_N1000_topk27_lam1e-4.pt"
 
