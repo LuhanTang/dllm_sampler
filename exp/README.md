@@ -85,8 +85,8 @@ Batch configs:
 Example: tune nucleus (top-p) in ReMDM with `NUCLEUS_P`:
 
 ```bash
-NUCLEUS_P=0.95 bash exp/run_remdm.sh text8_large_conf 0 512
-NUCLEUS_P=1.0  bash exp/run_remdm.sh owt_large_loop 0 512
+NUCLEUS_P=0.9 bash exp/run_remdm.sh text8_large_conf 0 512
+NUCLEUS_P=1   bash exp/run_remdm.sh owt_large_loop 0 512
 ```
 
 Notes:
