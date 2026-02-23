@@ -82,13 +82,6 @@ Batch configs:
 - `all_large`
 - `all`
 
-Example: tune nucleus (top-p) in ReMDM with `NUCLEUS_P`:
-
-```bash
-NUCLEUS_P=0.9 bash exp/run_remdm.sh text8_large_conf 0 512
-NUCLEUS_P=1   bash exp/run_remdm.sh owt_large_loop 0 512
-```
-
 Notes:
 - `--remasking low_confidence` = LLaDA.
 - `--remasking random` = MDLM.
@@ -108,6 +101,13 @@ Batch configs:
 - `all_owt`
 - `all_large`
 - `all`
+
+Example: tune nucleus (top-p) in ReMDM with `NUCLEUS_P`:
+
+```bash
+NUCLEUS_P=0.9 bash exp/run_remdm.sh text8_large_conf 0 512
+NUCLEUS_P=1   bash exp/run_remdm.sh owt_large_loop 0 512
+```
 
 ### `run_remdm.sh`
 
