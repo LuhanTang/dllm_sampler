@@ -2,6 +2,8 @@
 
 This repository is the code release for our paper on **sampler-centric evaluation** of discrete diffusion language models (dLLMs).
 
+Arxiv of our paper: https://arxiv.org/pdf/2602.19619
+
 ## Project Summary
 
 dLLMs provide fast and flexible parallel token updates, but are harder to evaluate than autoregressive models (ARMs).  
