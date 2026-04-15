@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Sampler-centric oracle evaluation</title>
+  <desc id="desc">A diagram showing learned denoisers, oracle HMM posterior, sampler dynamics, and transition-level metrics.</desc>
+  <rect width="1120" height="520" fill="#ffffff"/>
+  <rect x="40" y="40" width="1040" height="440" rx="8" fill="#f7f8fa" stroke="#d9dce2"/>
+  <text x="560" y="86" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17191f">Sampler-Centric Evaluation</text>
+  <text x="560" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#777b84">Replace learned denoisers with an exact posterior, then test the sampler itself.</text>
+
+  <rect x="82" y="174" width="210" height="116" rx="8" fill="#ffffff" stroke="#d9dce2"/>
+  <text x="187" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#17191f">Ground Truth</text>
+  <text x="187" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#777b84">Markov chain prior</text>
+  <circle cx="134" cy="264" r="13" fill="#1f6feb"/>
+  <circle cx="187" cy="264" r="13" fill="#2f9e44"/>
+  <circle cx="240" cy="264" r="13" fill="#c28a20"/>
+  <path d="M147 264 H174 M200 264 H227" stroke="#17191f" stroke-width="2"/>
+
+  <path d="M304 232 H394" stroke="#777b84" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="410" y="156" width="248" height="152" rx="8" fill="#ffffff" stroke="#1f6feb" stroke-width="2"/>
+  <text x="534" y="194" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#17191f">Oracle Denoiser</text>
+  <text x="534" y="222" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#777b84">Exact HMM posterior</text>
+  <rect x="454" y="246" width="48" height="34" rx="6" fill="#e8f1ff" stroke="#1f6feb"/>
+  <rect x="510" y="246" width="48" height="34" rx="6" fill="#e8f1ff" stroke="#1f6feb"/>
+  <rect x="566" y="246" width="48" height="34" rx="6" fill="#e8f1ff" stroke="#1f6feb"/>
+  <text x="478" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1f6feb">p1</text>
+  <text x="534" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1f6feb">p2</text>
+  <text x="590" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1f6feb">p3</text>
+
+  <path d="M672 232 H762" stroke="#777b84" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="778" y="156" width="250" height="152" rx="8" fill="#ffffff" stroke="#d9dce2"/>
+  <text x="903" y="194" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#17191f">Sampler Dynamics</text>
+  <text x="903" y="222" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#777b84">SEDD · MDLM · LLaDA · ReMDM</text>
+  <rect x="834" y="246" width="34" height="34" rx="6" fill="#fff4df" stroke="#c28a20"/>
+  <rect x="886" y="246" width="34" height="34" rx="6" fill="#fff4df" stroke="#c28a20"/>
+  <rect x="938" y="246" width="34" height="34" rx="6" fill="#fff4df" stroke="#c28a20"/>
+  <path d="M868 263 H886 M920 263 H938" stroke="#17191f" stroke-width="2"/>
+
+  <rect x="164" y="356" width="792" height="72" rx="8" fill="#ffffff" stroke="#d9dce2"/>
+  <text x="214" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#d94841">KL / TV</text>
+  <text x="374" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1f6feb">Transition mismatch</text>
+  <text x="560" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#2f9e44">N-gram diversity</text>
+  <text x="746" y="398" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#c28a20">NLL / GenPPL / MAUVE</text>
+  <text x="560" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#777b84">Surface quality can improve while sampler correctness remains unresolved.</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#777b84"/>
+    </marker>
+  </defs>
+</svg>
