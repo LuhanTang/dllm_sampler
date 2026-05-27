@@ -1,8 +1,8 @@
-# DLLM Sampler
+# Is Your Diffusion Sampler Actually Correct? A Sampler-Centric Evaluation of Discrete Diffusion Language Models
 
-This repository is the code release for our paper on **sampler-centric evaluation** of discrete diffusion language models (dLLMs).
+[![License](https://img.shields.io/badge/License-MIT-d4af37?style=for-the-badge)](https://opensource.org/license/MIT) [![Paper](https://img.shields.io/badge/Paper-arXiv%202602.19619-1f77b4?style=for-the-badge)](https://arxiv.org/abs/2602.19619) [![Project Page](https://img.shields.io/badge/Project%20Page-dLLM%20Sampler-6f42c1?style=for-the-badge)](https://luhantang.github.io/dllm_sampler/)
 
-Arxiv of our paper: https://arxiv.org/pdf/2602.19619
+Official implementation of the paper "Is Your Diffusion Sampler Actually Correct? A Sampler-Centric Evaluation of Discrete Diffusion Language Models" (ICML 2026).
 
 ## Project Summary
 
