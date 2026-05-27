@@ -6,608 +6,299 @@
     <title>Is Your Diffusion Sampler Actually Correct?</title>
     <meta
       name="description"
-      content="Project page for Is Your Diffusion Sampler Actually Correct? A Sampler-Centric Evaluation of Discrete Diffusion Language Models."
+      content="A Sampler-Centric Evaluation of Discrete Diffusion Language Models"
     />
     <style>
       :root {
-        --bg: #fffaf8;
-        --text: #433b42;
-        --muted: #8d7f89;
-        --soft: #f9f1f4;
-        --line: #e7d9e1;
-        --blue: #b79ad6;
-        --green: #b8d9c8;
-        --red: #efb7ad;
-        --gold: #f2ddb0;
-        --code: #f6eef3;
-        --max: 1040px;
-        --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-        --sans: "Avenir Next", "Segoe UI", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        --title: #273d57;
+        --text: #2f3742;
+        --muted: #3f4f63;
+        --author: #1a657e;
+        --line: #4f73e6;
+        --soft-line: #cad5ff;
+        --btn-bg: #f5f7ff;
+        --bg1: #dce6f6;
+        --bg2: #d8cae5;
+        --maxw: 1100px;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
+      * { box-sizing: border-box; }
 
       body {
         margin: 0;
         color: var(--text);
-        background: var(--bg);
-        font-family: var(--serif);
+        background: linear-gradient(100deg, var(--bg1) 10%, #dde5f2 45%, var(--bg2) 100%);
+        font-family: "Times New Roman", Georgia, serif;
         line-height: 1.6;
       }
 
-      a {
-        color: var(--blue);
-        text-decoration: none;
-      }
+      a { color: #284da8; text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        min-height: 64px;
-        padding: 0 28px;
-        border-bottom: 1px solid var(--line);
-        background: rgba(255, 250, 248, 0.94);
-        backdrop-filter: blur(10px);
-        font-family: var(--sans);
-      }
-
-      .brand {
-        color: var(--text);
-        font-size: 1.02rem;
-        font-weight: 760;
-        letter-spacing: 0;
-        white-space: nowrap;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        gap: 26px;
-        color: var(--muted);
-        font-size: 0.98rem;
-      }
-
-      .nav a {
-        color: var(--muted);
-      }
-
-      .nav a:hover {
-        color: var(--blue);
-        text-decoration: none;
-      }
-
-      .layout {
-        display: grid;
-        grid-template-columns: 158px minmax(0, 1fr);
-        gap: 28px;
-        width: min(var(--max), calc(100vw - 48px));
+      .container {
+        width: min(var(--maxw), calc(100vw - 2rem));
         margin: 0 auto;
-      }
-
-      .toc {
-        position: sticky;
-        top: 96px;
-        align-self: start;
-        margin-top: 68px;
-        margin-left: -22px;
-        padding-left: 0;
-        color: var(--muted);
-      }
-
-      .toc-title {
-        margin-bottom: 10px;
-        color: #7f838c;
-        font-family: var(--sans);
-        font-size: 0.73rem;
-        font-weight: 760;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .toc a {
-        display: block;
-        padding: 5px 0 5px 14px;
-        border-left: 2px solid transparent;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-
-      .toc a:hover {
-        border-left-color: var(--blue);
-        color: var(--blue);
-        text-decoration: none;
-      }
-
-      main {
-        min-width: 0;
-        padding: 62px 0 72px;
       }
 
       .hero {
         text-align: center;
+        padding: 2.9rem 0 1.3rem;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--title);
+        font-size: clamp(2.15rem, 3.55vw, 3.4rem);
+        line-height: 1.15;
+        font-weight: 700;
+      }
+
+
+      .subtitle {
+        margin-top: 0.2rem;
+        color: var(--title);
+        font-size: clamp(2.05rem, 3.35vw, 3.15rem);
+        line-height: 1.2;
+        font-weight: 700;
       }
 
       .venue {
-        margin: 0 0 14px;
-        color: var(--muted);
-        font-family: var(--sans);
-        font-size: 0.92rem;
-        font-weight: 650;
+        margin: 0.48rem 0 0;
+        color: #7c3e8f;
+        font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+        font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
-      h1 {
-        width: min(860px, 100%);
-        margin: 0 auto 18px;
-        font-size: 2.48rem;
-        line-height: 1.2;
-        letter-spacing: 0;
-      }
-
-      .title-line {
-        display: block;
-      }
-
-      .title-line.subtitle {
-        width: min(600px, 100%);
-        margin: 0.18em auto 0;
-      }
-
       .authors {
-        width: min(860px, 100%);
-        margin: 0 auto 8px;
-        color: var(--blue);
-        font-family: var(--sans);
-        font-size: 1.2rem;
-        line-height: 1.8;
+        margin: 1.35rem auto 0.25rem;
+        max-width: 1000px;
+        color: var(--author);
+        font-size: clamp(1.45rem, 1.8vw, 1.95rem);
+        line-height: 1.35;
       }
 
-      .affiliation {
+      .affiliations {
         margin: 0;
-        color: var(--muted);
-        font-family: var(--sans);
-        font-size: 1rem;
+        color: #2f3742;
+        font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+        line-height: 1.35;
       }
 
       .links {
+        margin-top: 1.25rem;
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
-        margin: 28px 0 36px;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.72rem;
       }
 
-      .button {
+      .link-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 42px;
-        padding: 9px 18px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--soft);
-        color: #574b55;
-        font-family: var(--sans);
-        font-weight: 650;
+        min-height: 3.05rem;
+        padding: 0.42rem 1.25rem;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: var(--btn-bg);
+        color: #283245;
+        font-size: 1.55rem;
+        font-weight: 700;
+        line-height: 1;
+        box-shadow: 0 1px 0 rgba(79, 115, 230, 0.15);
+        font-family: "Times New Roman", Georgia, serif;
       }
 
-      .button.primary {
-        border-color: var(--blue);
-        background: var(--blue);
-        color: #fff;
-      }
-
-      .button:hover {
-        transform: translateY(-1px);
+      .link-btn:hover {
         text-decoration: none;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(79, 115, 230, 0.2);
       }
 
-      .teaser {
-        margin: 26px auto 42px;
+      .figure-wrap {
+        margin: 1.6rem auto 1.3rem;
+        border: 1px solid var(--soft-line);
+        border-radius: 12px;
+        padding: 0.7rem;
+        background: rgba(255, 255, 255, 0.62);
+        backdrop-filter: blur(3px);
       }
-
-      .teaser img {
-        display: block;
-        width: min(920px, 100%);
+      .main-figure {
+        width: 100%;
+        max-width: 1100px;
         margin: 0 auto;
-        border: 1px solid var(--line);
         border-radius: 8px;
-        background: #fffdfc;
-      }
-
-      .caption {
-        width: min(840px, 100%);
-        margin: 12px auto 0;
-        color: var(--muted);
-        font-size: 0.94rem;
-        text-align: center;
+        display: block;
       }
 
       section {
-        padding: 26px 0;
-        border-top: 1px solid var(--line);
-        scroll-margin-top: 84px;
+
+
+        padding: 1.2rem 0;
+        border-top: 1px solid rgba(79, 115, 230, 0.25);
       }
 
       h2 {
-        margin: 0 0 12px;
-        font-size: 1.45rem;
+        margin: 0 0 0.42rem;
+        color: var(--title);
+        font-size: clamp(1.8rem, 2.2vw, 2.25rem);
         line-height: 1.25;
       }
 
-      p {
-        margin: 0 0 14px;
-      }
+      p { font-size: 1.2rem; }
 
-      .lead {
-        color: #4c434a;
-        font-size: 1.04rem;
-      }
-
-      .kicker {
-        color: #b589b9;
-        font-family: var(--sans);
-        font-size: 0.78rem;
-        font-weight: 760;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .two-col {
+      .grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
+        gap: 0.9rem;
+        margin-top: 0.45rem;
       }
 
-      .callout,
-      .result,
-      .file-card {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 16px;
-        background: #fffdfc;
+      .card {
+        border: 1px solid #b8c6f5;
+        border-radius: 9px;
+        padding: 0.85rem;
+        background: rgba(255, 255, 255, 0.68);
       }
 
-      .callout strong,
-      .result strong,
-      .file-card strong {
-        display: block;
-        margin-bottom: 6px;
-        color: #51464d;
-      }
-
-      .callout p,
-      .result p,
-      .file-card p {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .result-grid,
-      .file-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .result:nth-child(1) {
-        border-top: 4px solid var(--red);
-      }
-
-      .result:nth-child(2) {
-        border-top: 4px solid var(--gold);
-      }
-
-      .result:nth-child(3) {
-        border-top: 4px solid var(--green);
-      }
-
-      code {
-        padding: 2px 5px;
-        border-radius: 5px;
-        background: var(--code);
-        color: #4b4148;
-        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-        font-size: 0.92em;
+      .card h3 {
+        margin: 0 0 0.25rem;
+        color: #294ea7;
+        font-size: 1.24rem;
       }
 
       pre {
         overflow-x: auto;
-        margin: 12px 0 0;
-        padding: 16px;
-        border: 1px solid var(--line);
+        margin: 0;
+        padding: 0.9rem;
+        border: 1px solid #b8c6f5;
         border-radius: 8px;
-        background: #fcf5f8;
-        color: #4b4148;
-        font-size: 0.88rem;
-        line-height: 1.45;
+        background: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        line-height: 1.5;
       }
 
-      .copy-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-      }
-
-      .copy-button {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fffdfc;
-        color: #574b55;
-        cursor: pointer;
-        font: inherit;
-        font-weight: 650;
-        padding: 7px 12px;
-      }
-
-      .footer {
-        padding: 28px 0 0;
-        color: var(--muted);
-        font-size: 0.92rem;
+      footer {
+        border-top: 1px solid rgba(79, 115, 230, 0.25);
+        margin-top: 1.4rem;
+        padding: 0.9rem 0 1.9rem;
         text-align: center;
+        color: var(--muted);
+        font-size: 1rem;
       }
 
       @media (max-width: 900px) {
-        .layout {
-          display: block;
-          width: min(100% - 32px, 760px);
-        }
-
-        .toc {
-          display: none;
-        }
-
-        .nav {
-          gap: 14px;
-          overflow-x: auto;
-          white-space: nowrap;
-        }
-
-        .topbar {
-          padding: 0 16px;
-        }
-
-        main {
-          padding-top: 40px;
-        }
-
-        h1 {
-          font-size: 2.6rem;
-        }
-
-        .authors {
-          font-size: 1.06rem;
-        }
-
-        .two-col,
-        .result-grid,
-        .file-grid {
-          grid-template-columns: 1fr;
-        }
+        .grid { grid-template-columns: 1fr; }
       }
 
-      @media (max-width: 560px) {
-        .brand {
-          max-width: 108px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+      @media (max-width: 640px) {
 
-        .nav {
-          font-size: 0.9rem;
-        }
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .button {
+        .link-btn {
           width: 100%;
+          font-size: 1.05rem;
+          min-height: 2.8rem;
         }
-
-        .links {
-          display: grid;
-        }
+        p { font-size: 1.05rem; }
       }
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="#overview">dLLM Sampler</a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="https://arxiv.org/pdf/2602.19619" target="_blank" rel="noopener noreferrer">Paper</a>
-        <a href="#results">Results</a>
-        <a href="#method">Method</a>
-        <a href="#docs">Docs</a>
-        <a href="#cite">Cite</a>
-        <a href="https://github.com/LuhanTang/dllm_sampler" target="_blank" rel="noopener noreferrer">Code</a>
-      </nav>
-    </header>
+    <div class="container">
+      <header class="hero">
+        <h1>Is Your Diffusion Sampler Actually Correct?</h1>
+        <div class="subtitle">A Sampler-Centric Evaluation of Discrete Diffusion Language Models</div>
+        <p class="venue">ICML 2026</p>
 
-    <div class="layout">
-      <aside class="toc" aria-label="On this page">
-        <div class="toc-title">On This Page</div>
-        <a href="#overview">Overview</a>
-        <a href="#abstract">Abstract</a>
-        <a href="#motivation">Motivation</a>
-        <a href="#method">Method</a>
-        <a href="#results">Results</a>
-        <a href="#docs">Documentation</a>
-        <a href="#cite">Citation</a>
-      </aside>
+        <p class="authors">
+          <a href="https://luhantang.github.io/" target="_blank" rel="noopener noreferrer">Luhan Tang</a><sup>1</sup>,
+          <a href="https://fengsxy.github.io/" target="_blank" rel="noopener noreferrer">Longxuan Yu</a><sup>1</sup>,
+          <a href="https://szhan311.github.io/" target="_blank" rel="noopener noreferrer">Shaorong Zhang</a><sup>1</sup>,
+          <a href="https://profiles.ucr.edu/app/home/profile/gregoryv" target="_blank" rel="noopener noreferrer">Greg Ver Steeg</a><sup>1</sup>
+        </p>
+        <p class="affiliations"><sup>1</sup>University of California, Riverside</p>
 
-      <main id="overview">
-        <header class="hero">
-          <p class="venue">ICML 2026</p>
-          <h1>
-            <span class="title-line">Is Your Diffusion Sampler Actually Correct?</span>
-            <span class="title-line subtitle">A Sampler-Centric Evaluation of Discrete Diffusion Language Models</span>
-          </h1>
-          <p class="authors">
-            Luhan Tang, Longxuan Yu, Shaorong Zhang, Greg Ver Steeg
-          </p>
-          <p class="affiliation">University of California, Riverside</p>
+        <div class="links">
+          <a class="link-btn" href="https://arxiv.org/pdf/2602.19619" target="_blank" rel="noopener noreferrer">arXiv</a>
+          <a class="link-btn" href="https://github.com/LuhanTang/dllm_sampler" target="_blank" rel="noopener noreferrer">Code</a>
+          <a class="link-btn" href="#citation">Citation</a>
+        </div>
+      </header>
 
-          <div class="links" aria-label="Project links">
-            <a class="button primary" href="https://arxiv.org/pdf/2602.19619" target="_blank" rel="noopener noreferrer">Paper (arXiv)</a>
-            <a class="button" href="https://github.com/LuhanTang/dllm_sampler" target="_blank" rel="noopener noreferrer">Code</a>
-            <a class="button" href="#cite">Cite</a>
+      <figure class="figure-wrap">
+        <img class="main-figure" src="sampler.png" alt="Sampler main figure" />
+      </figure>
+
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p>
+          Discrete diffusion language models (dLLMs) provide a fast and flexible alternative to autoregressive models (ARMs) via iterative denoising with parallel updates. However, their evaluation is challenging: existing metrics conflate denoiser approximation error with sampler-induced error from the sampling dynamics, a problem that does not arise for ARMs whose autoregressive sampling exactly reflects the learned probability model. We introduce a sampler-centric oracle framework that replaces learned denoisers with an exact Hidden Markov Model posterior derived from a ground-truth Markov chain, isolating sampler-induced error in a controlled setting. We show that few-step discrete diffusion samplers are not distributionally correct even under an oracle denoiser, with transition-level mismatch that vanishes only as the number of steps approaches the sequence length. Moreover, improvements in negative log-likelihood (NLL), generative perplexity (GenPPL), or MAUVE do not imply correct sampling.
+        </p>
+      </section>
+
+      <section id="method">
+        <h2>Method Overview</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>1. Ground-Truth Data Process</h3>
+            <p>We construct data from a known discrete Markov chain so the target transition structure is exactly specified.</p>
           </div>
-        </header>
-
-        <figure class="teaser">
-          <img src="assets/teaser.svg" alt="Oracle sampler evaluation pipeline comparing learned denoisers, oracle HMM posterior, samplers, and transition metrics." />
-          <figcaption class="caption">
-            A sampler-centric evaluation isolates sampling dynamics by replacing learned denoisers with an exact HMM posterior, then measuring distributional mismatch beyond surface quality metrics.
-          </figcaption>
-        </figure>
-
-        <section id="abstract">
-          <p class="kicker">Abstract</p>
-          <h2>Sampler behavior matters, even with an oracle denoiser.</h2>
-          <p class="lead">
-            Discrete diffusion language models (dLLMs) provide a fast and flexible alternative to autoregressive models (ARMs) via iterative denoising with parallel updates. However, their evaluation is challenging: existing metrics conflate denoiser approximation error with sampler-induced error from the sampling dynamics, a problem that does not arise for ARMs whose autoregressive sampling exactly reflects the learned probability model.
-          </p>
-          <p>
-            We introduce a sampler-centric oracle framework that replaces learned denoisers with an exact Hidden Markov Model posterior derived from a ground-truth Markov chain, isolating sampler-induced error in a controlled setting. We show that few-step discrete diffusion samplers are not distributionally correct even under an oracle denoiser, with transition-level mismatch that vanishes only as the number of steps approaches the sequence length. Moreover, improvements in negative log-likelihood, generative perplexity, or MAUVE do not imply correct sampling.
-          </p>
-        </section>
-
-        <section id="motivation">
-          <p class="kicker">Motivation</p>
-          <h2>Current metrics may look strong without validating sampler correctness.</h2>
-          <div class="two-col">
-            <div class="callout">
-              <strong>Why current metrics are hard to trust</strong>
-              <p>
-                Learned-denoiser approximation and sampler-induced bias can both affect final samples, so metrics such as <code>NLL</code>, <code>GenPPL</code>, and <code>MAUVE</code> do not isolate the source of error. As a result, it remains unclear whether strong metric values actually indicate correct sampler behavior.
-              </p>
-            </div>
-            <div class="callout">
-              <strong>What the oracle setup isolates</strong>
-              <p>
-                The learned denoiser is replaced by an exact posterior, leaving the sampler dynamics as the source of distributional deviation.
-              </p>
-            </div>
+          <div class="card">
+            <h3>2. Oracle Posterior Inference</h3>
+            <p>Under forward masking corruption, we compute exact posteriors through HMM inference, removing denoiser approximation effects.</p>
           </div>
-        </section>
-
-        <section id="method">
-          <p class="kicker">Method</p>
-          <h2>A controlled framework for sampler-centric evaluation.</h2>
-          <p>
-            The data distribution is defined as a discrete Markov chain. Under forward masking, exact posteriors can be computed with Hidden Markov Model inference, enabling method-consistent oracle versions of samplers such as SEDD, MDLM/LLaDA, and ReMDM.
-          </p>
-          <div class="file-grid">
-            <div class="file-card">
-              <strong>Oracle posterior</strong>
-              <p><code>sampler/oracle_hmm_posterior.py</code></p>
-            </div>
-            <div class="file-card">
-              <strong>Unified metrics</strong>
-              <p><code>sampler/metrics_full.py</code></p>
-            </div>
-            <div class="file-card">
-              <strong>Experiment runners</strong>
-              <p><code>exp/run_all.sh</code></p>
-            </div>
+          <div class="card">
+            <h3>3. Sampler-Only Evaluation</h3>
+            <p>We instantiate method-consistent oracle variants for representative samplers and evaluate generated samples against true statistics.</p>
           </div>
-        </section>
-
-        <section id="results">
-          <p class="kicker">Results</p>
-          <h2>Correct-looking samples are not always correct samples.</h2>
-          <div class="result-grid">
-            <div class="result">
-              <strong>Few-step bias persists</strong>
-              <p>
-                Transition-level mismatch remains substantial at small step counts, even with exact denoising.
-              </p>
-            </div>
-            <div class="result">
-              <strong>More steps reduce mismatch</strong>
-              <p>
-                Distributional error vanishes only as diffusion steps approach sequence length.
-              </p>
-            </div>
-            <div class="result">
-              <strong>Quality scores are incomplete</strong>
-              <p>
-                Better <code>NLL</code>, <code>GenPPL</code>, or <code>MAUVE</code> does not necessarily imply sampler correctness.
-              </p>
-            </div>
+          <div class="card">
+            <h3>4. Metric Gap Analysis</h3>
+            <p>We compare transition-level correctness with aggregate sample-quality metrics to identify hidden sampling bias.</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="docs">
-          <p class="kicker">Documentation</p>
-          <h2>Reproduce the sampler evaluations.</h2>
-          <p>
-            The repository includes ground-truth construction, sampler runners, and unified evaluation scripts for text8 and OpenWebText-style experiments.
-          </p>
-          <pre><code>python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
 
-bash exp/build_gt.sh
-bash exp/run_all.sh text8 0 512</code></pre>
-          <p>
-            For the complete workflow, see <a href="https://github.com/LuhanTang/dllm_sampler/blob/main/README.md" target="_blank" rel="noopener noreferrer">README.md</a> and <a href="https://github.com/LuhanTang/dllm_sampler/blob/main/TUTORIAL.md" target="_blank" rel="noopener noreferrer">TUTORIAL.md</a>.
-          </p>
-        </section>
 
-        <section id="cite">
-          <div class="copy-row">
-            <div>
-              <p class="kicker">Citation</p>
-              <h2>If you find our paper helpful, please cite this work.</h2>
-            </div>
-            <button class="copy-button" type="button" data-copy="#bibtex">Copy BibTeX</button>
-          </div>
-          <pre id="bibtex"><code>@article{tang2026your,
+      <section id="samplers">
+        <h2>Samplers We Evaluate</h2>
+        <p>
+          <strong>SEDD</strong> — Lou et al., 2023. <a href="https://arxiv.org/abs/2310.16834" target="_blank" rel="noopener noreferrer">Discrete Diffusion Modeling by Estimating the Ratios of the Data Distribution</a>.
+        </p>
+        <p>
+          <strong>MDLM</strong> — Sahoo et al., 2024. <a href="https://arxiv.org/abs/2406.07524" target="_blank" rel="noopener noreferrer">Simple and Effective Masked Diffusion Language Models</a>.
+        </p>
+        <p>
+          <strong>ReMDM</strong> — Wang et al., 2025. <a href="https://arxiv.org/abs/2503.00307" target="_blank" rel="noopener noreferrer">Remasking Discrete Diffusion Models with Inference-Time Scaling</a>.
+        </p>
+        <p>
+          <strong>LLaDA</strong> — Nie et al., 2025. <a href="https://arxiv.org/abs/2502.09992" target="_blank" rel="noopener noreferrer">Large Language Diffusion Models</a>.
+        </p>
+      </section>
+
+      <section id="findings">
+        <h2>Main Findings</h2>
+        <p>
+          We introduced an oracle-based framework that isolates sampler-induced error in discrete diffusion language models by replacing learned denoisers with exact ground-truth posteriors. In this setting, few-step samplers remain substantially biased: transition-level mismatch persists even under oracle denoising and only diminishes as the number of sampling steps approaches the sequence length.
+        </p>
+        <p>
+          We further show that common external metrics can obscure this error. GenPPL can improve under local sharpening without faithful sampling, while MAUVE can remain high despite transition-level deviations. LLaDA further shows that samplers using denoiser confidence for token selection can be tightly coupled to the learned denoiser's confidence structure. Overall, our results motivate transition-aware evaluation that separates sampler behavior from denoiser quality and surface-level metrics.
+        </p>
+      </section>
+
+      <section id="citation">
+        <h2>Citation</h2>
+        <pre>@article{tang2026diffusionsampler,
   title={Is Your Diffusion Sampler Actually Correct? A Sampler-Centric Evaluation of Discrete Diffusion Language Models},
-  author={Tang, Luhan and Yu, Longxuan and Zhang, Shaorong and Steeg, Greg Ver},
+  author={Tang, Luhan and Yu, Longxuan and Zhang, Shaorong and Ver Steeg, Greg},
   journal={arXiv preprint arXiv:2602.19619},
   year={2026}
-}</code></pre>
-        </section>
+}</pre>
+      </section>
 
-        <p class="footer">
-          Code and documentation for sampler-centric evaluation of discrete diffusion language models.
-        </p>
-      </main>
+      <footer>Project page style aligned to the SAW-Bench visual language.</footer>
     </div>
-
-    <script>
-      const button = document.querySelector("[data-copy]");
-      button?.addEventListener("click", async () => {
-        const target = document.querySelector(button.dataset.copy);
-        const text = target?.innerText.trim();
-        if (!text) return;
-        await navigator.clipboard.writeText(text);
-        const oldText = button.textContent;
-        button.textContent = "Copied";
-        setTimeout(() => {
-          button.textContent = oldText;
-        }, 1400);
-      });
-    </script>
   </body>
 </html>
